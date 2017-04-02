@@ -70,15 +70,11 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
         backTrek.startAnimation(scale);
         stopTrek.startAnimation(translate);
 
-        /*mLatitudeTextView = (TextView) findViewById(R.id.textView_latitude);
-        mLongitudeTextView = (TextView) findViewById(R.id.textView_longitude);
-        lv = (ListView) findViewById(R.id.list_coordinates);*/
         db = openOrCreateDatabase("Coordinate", MODE_PRIVATE, null);
         mRequestingLocationUpdates = false;
         mLastUpdateTime = "";
 
         setValues();
-//        Toast.makeText(this, UPDATE_INTERVAL_IN_MILLISECONDS + "", Toast.LENGTH_LONG).show();
         buildGoogleApiClient();
         updateValuesFromBundle(savedInstanceState);
 
@@ -133,30 +129,6 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
         builder.show();
      }
 
-    /*public void showCoordinates(View v)
-    {
-        String s[] = new String[100];
-        Arrays.fill(s, "");
-        Integer i = 0;
-        try {
-            Cursor c = db.rawQuery("select * from Coordinate", null);
-            c.moveToLast();
-            while (c.moveToPrevious()) {
-                s[i] = "Lat: " + c.getString(0) +" Lon:" + c.getString(1) + "\n===========================\n";
-                i = i + 1;
-            }
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Main2Activity.this, android.R.layout.simple_expandable_list_item_1, s);
-            lv.setAdapter(adapter);
-            Intent intent = new Intent(Main2Activity.this, MapsActivity.class);
-            startActivity(intent);
-        }
-        catch (Exception e)
-        {
-
-        }
-    }*/
-
-
     private void updateValuesFromBundle(Bundle savedInstanceState) {
 
         if (savedInstanceState != null) {
@@ -173,20 +145,9 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
             if (savedInstanceState.keySet().contains(LAST_UPDATED_TIME_STRING_KEY)) {
                 mLastUpdateTime = savedInstanceState.getString(LAST_UPDATED_TIME_STRING_KEY);
             }
-//            updateUI();
         }
 
     }
-
-    /*private void updateUI() {
-
-        if (mCurrentLocation != null)
-        {
-            mLatitudeTextView.setText(String.valueOf(mCurrentLocation.getLatitude()));
-            mLongitudeTextView.setText(String.valueOf(mCurrentLocation.getLongitude()));
-        }
-
-    }*/
 
     private void setButtonsEnabledState() {
 
@@ -279,7 +240,6 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
                 return;
             }
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-//            updateUI();
         }
 
         if (mRequestingLocationUpdates) {
@@ -315,7 +275,6 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
 
         }
         Toast.makeText(this,"Location Marked",Toast.LENGTH_SHORT).show();
-//        updateUI();
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState)
@@ -348,14 +307,6 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onStop() {
         mGoogleApiClient.disconnect();
-       /*try
-        {
-            db.execSQL("delete from Coordinate");
-        }
-        catch (Exception e)
-        {
-
-        }*/
         super.onStop();
     }
 }
