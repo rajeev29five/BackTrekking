@@ -1,4 +1,4 @@
-# BackTrekking# BackTrekking
+# BackTrekking
 
 BackTrekking is a location based android application.
 
@@ -7,7 +7,3 @@ BackTrekking is a location based android application.
 2. Paste the Google Api Key obtained in gradle.properties file and in google_maps_api.xml 
 
 3. Sync Gradle
-
-
-
-
