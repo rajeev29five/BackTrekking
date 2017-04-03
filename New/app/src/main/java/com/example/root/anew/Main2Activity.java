@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -95,6 +96,24 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
                 startActivity(intent);
             }
         });
+
+        backTrek.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if ( v == backTrek)
+                {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    {
+                        v.setAlpha(0.1f);
+                    }
+                    else
+                    {
+                        v.setAlpha(0.9f);
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     public void setValues()
@@ -121,8 +140,6 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
                         case 3 :
                             break;
                     }
-
-                    Log.v("1234",""+UPDATE_INTERVAL_IN_MILLISECONDS);
 
             }
         });
@@ -153,10 +170,14 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
 
         if (mRequestingLocationUpdates) {
             startTrek.setEnabled(false);
+            startTrek.getBackground().setAlpha(128);
             stopTrek.setEnabled(true);
+            stopTrek.getBackground().setAlpha(255);
         } else {
             startTrek.setEnabled(true);
             stopTrek.setEnabled(false);
+            stopTrek.getBackground().setAlpha(128);
+            startTrek.getBackground().setAlpha(255);
         }
 
     }
