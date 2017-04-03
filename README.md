@@ -8,4 +8,3 @@ BackTrekking is a location based android application.
 
 3. Sync Gradle
 
-
